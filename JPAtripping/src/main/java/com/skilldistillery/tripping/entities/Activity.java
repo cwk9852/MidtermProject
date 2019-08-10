@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "activity")
 public class Activity {
@@ -37,6 +39,7 @@ public class Activity {
 	private String iconUrl;
 
 	@ManyToMany(mappedBy = "activities")
+	@JsonIgnore
 	private List<PointOfInterest> points;
 
 	public List<PointOfInterest> getPoints() {

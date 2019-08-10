@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Destination {
 
@@ -69,12 +71,15 @@ public class Destination {
 	private String image;
 
 	@OneToMany(mappedBy = "destination")
+	@JsonIgnore
 	private List<DestinationReview> destinationReviews;
 
 	@OneToMany(mappedBy = "destination", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<PointOfInterest> points;
 
 	@OneToMany(mappedBy = "destination")
+	@JsonIgnore
 	private List<Event> events;
 
 //	INSTEAD OF VOID ID LIKE TO RETURN A STRING TO SHOW THAT ALL ADD/REMOVE WORK

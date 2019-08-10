@@ -9,10 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -51,10 +52,8 @@ public class Amenity {
 	@JoinTable(name = "point_of_interest_has_amenity", 
 	joinColumns = {	@JoinColumn(name = "amenity_id") }, 
 	inverseJoinColumns = { @JoinColumn(name = "point_of_interest_id") })
+	@JsonIgnore
 	private List<PointOfInterest> points;
-
-//	@OneToMany(mappedBy="amenity")
-//	private Amenity amenity;
 
 	public List<PointOfInterest> getPoints() {
 		return points;

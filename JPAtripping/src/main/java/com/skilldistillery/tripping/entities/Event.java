@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Event {
 
@@ -29,8 +31,8 @@ public class Event {
 
 	@OneToMany
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private List<EventReview> reviews;
-
 
 	@OneToMany
 	@JoinColumn(name = "event_id")
