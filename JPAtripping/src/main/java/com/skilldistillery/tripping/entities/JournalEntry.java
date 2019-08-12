@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="journal_entry")
 public class JournalEntry {
@@ -82,14 +84,17 @@ public class JournalEntry {
 
 	@ManyToOne
 	@JoinColumn(name = "destination_id")
+	@JsonIgnore
 	private Destination destination;
 
 	@ManyToOne
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private Event event;
 
 	@ManyToOne
 	@JoinColumn(name = "activitity_id")
+	@JsonIgnore
 	private Activity activity;
 
 	@OneToMany(mappedBy = "journalId")

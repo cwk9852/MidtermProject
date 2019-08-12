@@ -23,8 +23,8 @@ function init() {
 		getDestinations();
 	});
 	document.getElementById('addDestination').addEventListener('click', function() {
-		let addFormDiv = document.getElementById('addForm');
-		addFormDiv.style.display='block';
+		let addDestinationDiv = document.getElementById('addDestinationDiv');
+		addDestinationDiv.style.display='block';
 	});
 	
 	
@@ -50,14 +50,13 @@ function createDestination(e) {
 	}
 
 	let destinationObject = {
-		date : document.newDestination.date.value,
-		summary : document.newDestination.summary.value,
-		disease : document.newDestination.disease.value,
-		location : document.newDestination.location.value,
-		species : document.newDestination.species.value,
-		cases : document.newDestination.cases.value,
-		deaths : document.newDestination.deaths.value,
-		significance : document.newDestination.significance.value,
+		name : document.newDestination.name.value,
+		shortdescription : document.newDestination.shortdescription.value,
+		description : document.newDestination.description.value,
+		image : document.newDestination.image.value,
+		destinationreviews : document.newDestination.destinationreviews.value,
+		points : document.newDestination.points.value,
+		events : document.newDestination.events.value,
 	}
 	
 	xhr.send(JSON.stringify(destinationObject));
@@ -85,14 +84,13 @@ function updateDestination(e) {
 	}
 	
 	let destinationObject = {
-			date : document.updateDestination.date.value,
-			summary : document.updateDestination.summary.value,
-			disease : document.updateDestination.disease.value,
-			location : document.updateDestination.location.value,
-			species : document.updateDestination.species.value,
-			cases : document.updateDestination.cases.value,
-			deaths : document.updateDestination.deaths.value,
-			significance : document.updateDestination.significance.value,
+			name : document.newDestination.name.value,
+			shortdescription : document.newDestination.shortdescription.value,
+			description : document.newDestination.description.value,
+			image : document.newDestination.image.value,
+			destinationreviews : document.newDestination.destinationreviews.value,
+			points : document.newDestination.points.value,
+			events : document.newDestination.events.value,
 	}
 	
 	xhr.send(JSON.stringify(destinationObject));
@@ -109,13 +107,13 @@ function displayDestinations(destinations) {
 	updateDiv.style.display='none';
 	let formsDiv = document.getElementById('forms');
 	formsDiv.style.display='block';
-//	let thead = document.getElementById('tableheaders').textContent = '';
-//	let columns = destinations.keys();
-//	columns.forEach(function( val, index, array) {
-//		let colTitle = document.createElement('th');
-//		colTitle.textContent= val;
-//		thead.appendChild(colTitle);
-//	});
+// let thead = document.getElementById('tableheaders').textContent = '';
+// let columns = destinations.keys();
+// columns.forEach(function( val, index, array) {
+// let colTitle = document.createElement('th');
+// colTitle.textContent= val;
+// thead.appendChild(colTitle);
+// });
 	destinations.forEach(function(val, index, array) {
 		let destinationTr = document.createElement('tr');
 		let idTd = document.createElement('td');
@@ -127,12 +125,12 @@ function displayDestinations(destinations) {
 		let shortDescriptionTd = document.createElement('td');
 		shortDescriptionTd.textContent = val.shortDescription;
 		destinationTr.appendChild(shortDescriptionTd);
-//		let descriptionTd = document.createElement('td');
-//		descriptionTd.textContent = val.description;
-//		destinationTr.appendChild(descriptionTd);
-//		let imageTd = document.createElement('td');
-//		imageTd.textContent = val.image;
-//		destinationTr.appendChild(imageTd);
+// let descriptionTd = document.createElement('td');
+// descriptionTd.textContent = val.description;
+// destinationTr.appendChild(descriptionTd);
+// let imageTd = document.createElement('td');
+// imageTd.textContent = val.image;
+// destinationTr.appendChild(imageTd);
 		destinationTr.addEventListener('click', function(evt) {
 			console.log(val.id);
 			getOneDestination(val.id);
@@ -207,15 +205,16 @@ function displayDestination(destination) {
 		deleteDestination(destination.id);
 	});
 
-//	document.updateDestination.elements["oid"].value = destination.id;
-//	document.updateDestination.elements["date"].value = destination.date;
-//	document.updateDestination.elements["summary"].value = destination.summary;
-//	document.updateDestination.elements["disease"].value = destination.disease;
-//	document.updateDestination.elements["location"].value = destination.location;
-//	document.updateDestination.elements["species"].value = destination.species;
-//	document.updateDestination.elements["cases"].value = destination.cases;
-//	document.updateDestination.elements["deaths"].value = destination.deaths;
-//	document.updateDestination.elements["significance"].value = destination.significance;
+// document.updateDestination.elements["oid"].value = destination.id;
+// document.updateDestination.elements["date"].value = destination.date;
+// document.updateDestination.elements["summary"].value = destination.summary;
+// document.updateDestination.elements["disease"].value = destination.disease;
+// document.updateDestination.elements["location"].value = destination.location;
+// document.updateDestination.elements["species"].value = destination.species;
+// document.updateDestination.elements["cases"].value = destination.cases;
+// document.updateDestination.elements["deaths"].value = destination.deaths;
+// document.updateDestination.elements["significance"].value =
+// destination.significance;
 
 	let formsDiv = document.getElementById('forms');
 	formsDiv.style.display='none';

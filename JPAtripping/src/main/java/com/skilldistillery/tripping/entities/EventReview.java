@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="event_user_review")
 public class EventReview {
@@ -27,6 +29,7 @@ public class EventReview {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	public void setRating(Integer rating) {
@@ -67,6 +70,7 @@ public class EventReview {
 
 	@ManyToOne
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private Event event;
 
 	@Column(name = "create_date")

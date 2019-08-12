@@ -1,10 +1,15 @@
 package com.skilldistillery.tripping.entities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Destination {
@@ -71,15 +76,12 @@ public class Destination {
 	private String image;
 
 	@OneToMany(mappedBy = "destination")
-	@JsonIgnore
 	private List<DestinationReview> destinationReviews;
 
 	@OneToMany(mappedBy = "destination", fetch = FetchType.EAGER)
-	@JsonIgnore
 	private List<PointOfInterest> points;
 
 	@OneToMany(mappedBy = "destination")
-	@JsonIgnore
 	private List<Event> events;
 
 //	INSTEAD OF VOID ID LIKE TO RETURN A STRING TO SHOW THAT ALL ADD/REMOVE WORK

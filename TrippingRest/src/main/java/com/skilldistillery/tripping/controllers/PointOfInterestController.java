@@ -16,43 +16,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.tripping.entities.Destination;
-import com.skilldistillery.tripping.services.DestinationService;
+import com.skilldistillery.tripping.entities.PointOfInterest;
+import com.skilldistillery.tripping.services.PointOfInterestService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost:4204"})
+@CrossOrigin({"*", "http://localhost:4203"})
 
-public class DestinationController {
+public class PointOfInterestController {
 
 	@Autowired
-	private DestinationService svc;
+	private PointOfInterestService svc;
 	
-	@GetMapping(path = "ping")
-	public String getPong() {
-		return "pong";
-	}
 
-	@GetMapping(path = "destinations")
-	public List<Destination> getDestinations() {
+	@GetMapping(path = "points")
+	public List<PointOfInterest> getPointOfInterests() {
 		return svc.index();
 	}
 	
-	@GetMapping(path = "destinations/{id}")
-	public Destination getDestinationById(@PathVariable Integer id, HttpServletResponse resp) {
+	@GetMapping(path = "points/{id}")
+	public PointOfInterest getPointOfInterestById(@PathVariable Integer id, HttpServletResponse resp) {
 		
-		Destination destination = svc.getDestinationById(id);
+		PointOfInterest point = svc.getPointOfInterestById(id);
 		
-		if (destination == null) {
+		if (point == null) {
 			resp.setStatus(404);
 			return null; 
 		}
 		
-		return destination;
+		return point;
 	}
 	
-	@DeleteMapping("destinations/{id}")
-	public Boolean deleteDestination(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse resp) {
+	@DeleteMapping("points/{id}")
+	public Boolean deletePointOfInterest(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse resp) {
 		try {
 			svc.delete(id);
 			return true;
@@ -62,37 +58,37 @@ public class DestinationController {
 		}
 	}
 	
-	@PostMapping("destinations")
-	public Destination createDestination(@RequestBody Destination destination, HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println(destination);
+	@PostMapping("points")
+	public PointOfInterest createPointOfInterest(@RequestBody PointOfInterest point, HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println(point);
 		try {
-			svc.create(destination);
+			svc.create(point);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/");
-			url.append(destination.getId());
+			url.append(point.getId());
 			String newAddrURL = url.toString();
 			resp.addHeader("Location", newAddrURL);
 		} catch (Exception e) {
 			resp.setStatus(400);
-			destination = null;
+			point = null;
 		}
-		return destination;
+		return point;
 	}
 	
-	@PutMapping("destinations/{id}")
-	public Destination replaceDestination(@PathVariable Integer id, @RequestBody Destination destination, HttpServletRequest req, HttpServletResponse resp) {
+	@PutMapping("points/{id}")
+	public PointOfInterest replacePointOfInterest(@PathVariable Integer id, @RequestBody PointOfInterest point, HttpServletRequest req, HttpServletResponse resp) {
 		try {
-			destination = svc.update(id, destination);
+			point = svc.update(id, point);
 			resp.setStatus(200);
 			StringBuffer url = req.getRequestURL();
 			String newAddrURL = url.toString();
 			resp.addHeader("URL", newAddrURL);
 		} catch (Exception e) {
 			resp.setStatus(400);
-			destination = null;
+			point = null;
 		}
-		return destination;
+		return point;
 	}
 	
 }

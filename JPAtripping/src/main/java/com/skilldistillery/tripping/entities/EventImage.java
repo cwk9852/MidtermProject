@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class EventImage {
 
@@ -47,6 +49,7 @@ public class EventImage {
 
 	@ManyToOne
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private Event event;
 
 	@Column(name = "image_url")

@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "point_of_interest_comment")
 public class PointOfInterestComment {
@@ -25,10 +27,12 @@ public class PointOfInterestComment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "poi_id")
+	@JsonIgnore
 	private PointOfInterest point;
 
 	public PointOfInterestComment(User user, PointOfInterest point, String commentText, int rating, Date commentDate) {

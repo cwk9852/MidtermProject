@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "destination_user_review ")
 public class DestinationReview {
@@ -27,6 +29,7 @@ public class DestinationReview {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	@Override
@@ -44,6 +47,7 @@ public class DestinationReview {
 
 	@ManyToOne
 	@JoinColumn(name = "destination_id")
+	@JsonIgnore
 	private Destination destination;
 
 	@Column(name = "create_date")

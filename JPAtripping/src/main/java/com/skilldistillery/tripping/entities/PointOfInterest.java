@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "point_of_interest")
 public class PointOfInterest {
@@ -34,6 +36,7 @@ public class PointOfInterest {
 
 	@ManyToOne
 	@JoinColumn(name = "destination_id")
+	@JsonIgnore
 	private Destination destination;
 
 	@Column(name = "short_description")

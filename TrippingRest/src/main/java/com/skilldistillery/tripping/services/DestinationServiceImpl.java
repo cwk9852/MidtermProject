@@ -54,6 +54,9 @@ public class DestinationServiceImpl implements DestinationService {
 		Destination managed = null;
 		if (optDestination.isPresent()) {
 			managed = optDestination.get();
+			managed.setShortDescription(destination.getShortDescription());
+			managed.setName(destination.getName());
+			managed.setImage(destination.getImage());
 			managed.setDescription(destination.getDescription());
 			repo.saveAndFlush(managed);
 		}

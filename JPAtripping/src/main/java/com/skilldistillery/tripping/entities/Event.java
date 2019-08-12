@@ -27,11 +27,11 @@ public class Event {
 
 	@ManyToOne
 	@JoinColumn(name = "destination_id")
+	@JsonIgnore
 	private Destination destination;
 
 	@OneToMany
 	@JoinColumn(name = "event_id")
-	@JsonIgnore
 	private List<EventReview> reviews;
 
 	@OneToMany

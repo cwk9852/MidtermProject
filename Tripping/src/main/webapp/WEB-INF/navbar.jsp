@@ -27,7 +27,7 @@
                             </a> <a class="dropdown-item" data-scroll="true" data-id="#points"
                                 href="modal"> <i class="nc-icon nc-settings"></i> Add Point
                             </a> <a class="dropdown-item" data-scroll="true" data-id="#events"
-                                href=modal""> <i class="nc-icon nc-bullet-list-67"></i> Add
+                                href="modal"> <i class="nc-icon nc-bullet-list-67"></i> Add
                                 Event
                             </a> <a class="dropdown-item" data-scroll="true" data-id="#users"
                                 href="viewUsers.do"> <i class="fas fa-users"></i> View All
