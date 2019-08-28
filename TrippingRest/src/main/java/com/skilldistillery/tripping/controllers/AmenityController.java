@@ -21,7 +21,7 @@ import com.skilldistillery.tripping.services.AmenityService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost:4203"})
+@CrossOrigin({"*", "http://localhost:4200"})
 
 public class AmenityController {
 

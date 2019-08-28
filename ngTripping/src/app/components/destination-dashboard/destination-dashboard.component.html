@@ -1,0 +1,14 @@
+<div class="grid-container">
+  <mat-grid-list cols="4" rowHeight="200px">
+    <mat-grid-tile *ngFor="let card of destArray" [colspan]="1" [rowspan]="1" >
+      <mat-card class="dashboard-card"
+      [ngStyle]="{'background-image': 'url('+card.image+')'}"
+      style="background-size: cover"
+      tabindex="-1"
+      (click)="selected = card"
+      >
+        <mat-card-title>{{card.name | uppercase }}</mat-card-title>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

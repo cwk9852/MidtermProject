@@ -1,0 +1,249 @@
+<div id="wrapper">
+  <div id="headerDIV" *ngIf="!selected && !editDestination">
+    <h1>
+      {{ title }}! {{ getNumberOfDestinations() }}
+      <button mat-mini-fab color="warn" (click)="selected = newDestination">
+        Add
+      </button>
+      <app-destination-dashboard></app-destination-dashboard>
+      <br />
+    </h1>
+  </div>
+  <div id="add" *ngIf="selected == newDestination && !editDestination">
+    <mat-form-field>
+      Name:<input
+        matInput
+        type="text"
+        name="name"
+        [(ngModel)]="newDestination.name"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      short_description:<input
+        matInput
+        type="text"
+        name="short_description"
+        [(ngModel)]="newDestination.shortDescription"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      description:<input
+        matInput
+        type="text"
+        name="description"
+        [(ngModel)]="newDestination.description"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      image:<input
+        matInput
+        type="text"
+        name="image"
+        [(ngModel)]="newDestination.image"
+      />
+    </mat-form-field>
+    <br />
+    <button mat-flat-button color="warn" (click)="addDestination()">
+      Add
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="selected = null; editDestination = null; load()"
+    >
+      Back
+    </button>
+  </div>
+  <div id="update" *ngIf="editDestination">
+    <form>
+      <input type="hidden" name="id" [(ngModel)]="editDestination.id" />
+      <mat-form-field>
+        NAME:
+        <input
+          matInput
+          type="text"
+          name="name"
+          [(ngModel)]="editDestination.name"
+        /> </mat-form-field
+      ><br />
+      <mat-form-field>
+        Short Description:<input
+          matInput
+          type="textarea"
+          name="shortDescription"
+          [(ngModel)]="editDestination.shortDescription"
+        />
+        <br />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        description:<input
+          matInput
+          type="textarea"
+          name="description"
+          [(ngModel)]="editDestination.description"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        image:<input
+          matInput
+          type="textarea"
+          name="image"
+          [(ngModel)]="editDestination.image"
+        />
+      </mat-form-field>
+      <br />
+      <!-- destinationReviews:<input
+        type="hidden"
+        name="destinationReviews"
+        [(ngModel)]="editDestination.destinationReviews"
+      />
+      <br />
+      points:<input
+        type="hidden"
+        name="points"
+        [(ngModel)]="editDestination.points"
+      />
+      <br />
+      events:<input
+        type="hidden"
+        name="events"
+        [(ngModel)]="editDestination.events"
+      />
+      <br /> -->
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="saveEdit()"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="selected = null; editDestination = null; load()"
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+  <div
+    id="details"
+    *ngIf="selected && !editDestination && selected != newDestination"
+  >
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="deleteDestination(selected.id)"
+    >
+      X
+    </button>
+    <p>{{ selected.name }}</p>
+    <p>{{ selected.short_description }}</p>
+    <p>{{ selected.description }}</p>
+    <p><img src="{{ selected.image }}" /></p>
+    <p *ngFor="let review of selected.destinationReviews">
+      {{ review.reviewText }}<br />
+    </p>
+    <h5 *ngFor="let point of selected.points">{{ point.name }}</h5>
+    <h5 *ngFor="let event of selected.events">{{ event.name }}</h5>
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="selected = null; editDestination = null; load()"
+    >
+      Back
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-warning"
+      (click)="editDestination = selected"
+    >
+      Edit
+    </button>
+  </div>
+  <div id="main">
+    <div class="spinner-container" *ngIf="destinations.loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="mat-elevation-z8" *ngIf="!selected">
+      <table id="destinationTable" mat-table [dataSource]="destinations">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td
+            mat-cell
+            *matCellDef="let destination"
+            (click)="selected = destination"
+          >
+            {{ destination.name }}
+          </td>
+        </ng-container>
+        <!-- Short Description Column -->
+        <ng-container matColumnDef="shortDescription">
+          <th mat-header-cell *matHeaderCellDef>Short Description</th>
+          <td
+            mat-cell
+            *matCellDef="let destination"
+            (click)="selected = destination"
+          >
+            {{ destination.shortDescription }}
+          </td>
+        </ng-container>
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let destination">
+            {{ destination.description }}
+          </td>
+        </ng-container>
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef>Image</th>
+          <td mat-cell *matCellDef="let destination">
+            <img src="{{ destination.image }}" width="250px" height="250px" />
+          </td>
+        </ng-container>
+        <!-- Points Column -->
+        <ng-container matColumnDef="points">
+          <th mat-header-cell *matHeaderCellDef>Points</th>
+          <td mat-cell *matCellDef="let destination">
+            <span *ngFor="let point of destination.points">{{
+              point.name
+            }}</span>
+          </td>
+        </ng-container>
+        <!-- Events Column -->
+        <ng-container matColumnDef="events">
+          <th mat-header-cell *matHeaderCellDef>Events</th>
+          <td mat-cell *matCellDef="let destination">
+            <span *ngFor="let event of destination.events">{{
+              event.name
+            }}</span>
+          </td>
+        </ng-container>
+        <!-- Reviews Column -->
+        <ng-container matColumnDef="reviews">
+          <th mat-header-cell *matHeaderCellDef>Reviews</th>
+          <td mat-cell *matCellDef="let destination">
+            <span *ngFor="let review of destination.destinationReviews">{{
+              review.reviewText
+            }}</span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="getNumberOfDestinations"
+        [pageSize]="5"
+        [pageSizeOptions]="[3, 5, 10]"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

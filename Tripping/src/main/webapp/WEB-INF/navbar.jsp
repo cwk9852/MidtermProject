@@ -49,11 +49,11 @@
                 <li class="nav-item"><a class="navbar-brand" href="#login" style="width: 95%; color: orange; text-align: center; font-weight: 800;"
                     rel="tooltip" title="login" data-placement="bottom"
                     data-toggle="modal" data-target="#loginModal"> login </a></li>
-                <li><a class="navbar-brand" href="#register" rel="tooltip"
+                <li><<!-- a class="navbar-brand" href="#register" rel="tooltip"
                     title="register" data-placement="bottom" data-toggle="modal"
                     data-target="#registerModal"
                     style="width: 95%; color: orange; text-align: center; font-weight: 800;">
-                    Register </a>
+                    Register </a> -->
                 </li>
             </ul>
         </c:otherwise>

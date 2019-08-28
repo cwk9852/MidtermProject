@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@CrossOrigin({"*", "http://localhost:4203"})
+@CrossOrigin({"*", "http://localhost:4200"})
 public class RootController {
 
 	@RequestMapping(path = "/")

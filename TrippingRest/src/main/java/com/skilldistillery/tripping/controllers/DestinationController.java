@@ -21,17 +21,12 @@ import com.skilldistillery.tripping.services.DestinationService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost:4204"})
+@CrossOrigin({"*", "http://localhost:4200"})
 
 public class DestinationController {
 
 	@Autowired
 	private DestinationService svc;
-	
-	@GetMapping(path = "ping")
-	public String getPong() {
-		return "pong";
-	}
 
 	@GetMapping(path = "destinations")
 	public List<Destination> getDestinations() {

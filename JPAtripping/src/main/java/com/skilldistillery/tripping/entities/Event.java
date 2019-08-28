@@ -32,10 +32,12 @@ public class Event {
 
 	@OneToMany
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private List<EventReview> reviews;
 
 	@OneToMany
 	@JoinColumn(name = "event_id")
+	@JsonIgnore
 	private List<EventImage> images;
 
 	@Column(name = "name")

@@ -1,28 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76"
-	href="./assets/img//apple-icon.png">
-<link rel="icon" type="image/png" href="./assets/img//favicon.png">
 <link href="./assets/css/entitiesGrid.css" rel="stylesheet" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>tripping</title>
 
 <jsp:include page="bootstrapHead.jsp" />
-
+<jsp:include page="navbar.jsp" />
 </head>
 
 <body class="index-page sidebar-collapse">
-
-	<jsp:include page="navbar.jsp" />
-
-	<div class="page-header section-dark"
-		style="background-image: url('https://www.outtherecolorado.com/wp-content/uploads/2017/03/65c35611befe96d3a3f0f010e1e74fcd-1024x683.jpg')">
+	<div class="page-header" style="background-image: url('https://www.outtherecolorado.com/wp-content/uploads/2017/03/65c35611befe96d3a3f0f010e1e74fcd-1024x683.jpg')">
 		<div class="filter"></div>
 		<div class="content-center">
 			<div class="container">
@@ -37,30 +29,6 @@
 				</div>
 			</div>
 		</div>
-	<!-- 		<div class="card-body __web-inspector-hide-shortcut__">
-                    <form method="" action="">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <input type="text" value="" placeholder="Activity" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <input type="text" value="" placeholder="Destination" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <input type="text" value="" placeholder="Date Picker" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <button type="button" class="btn btn-danger btn-block"><i class="nc-icon nc-zoom-split"></i> &nbsp; Search</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div> -->
 		<div class="moving-clouds"
 			style="background-image: url('./assets/img/clouds.png');"></div>
 		<a href="viewDestinations.do"><h5 class="category category-absolute"><strong>EXPLORE</strong></a>
